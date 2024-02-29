@@ -11,7 +11,10 @@ documentTitle.textContent = documentName || "Documento sem título";
 selectDocument(documentName)
 
 textEditor.addEventListener("keyup", ()=>{
-    emitTextEditor(textEditor.value)
+    emitTextEditor({
+        text: textEditor.value, 
+        documentName
+    })
 });
 
 function updateTextEditor(text) {
