@@ -18,7 +18,7 @@ textEditor.addEventListener("keyup", ()=>{
 });
 
 function updateTextEditor(text) {
-    textEditor.value = text
+    textEditor.value = text;
 };
 
 export { updateTextEditor } ;
