@@ -1,5 +1,5 @@
 import io from "./server.js";
-import { findDocument, updateDocument, getDocuments } from "./documentsDb.js";
+import { findDocument, updateDocument, getDocuments, addDocument } from "./documentsDb.js";
 
 
 io.on("connection", (socket) => {
@@ -8,9 +8,22 @@ io.on("connection", (socket) => {
     const documents = await getDocuments()
 
     returnDocuments(documents)
-  })
-    
+  });
 
+  socket.on("add_document", async (name) =>{
+    const documentExists = (await findDocument(name)) !== null;
+
+    if (documentExists) {
+      socket.emit("document_exists", name)
+    } else {
+      const result = await addDocument(name);
+  
+      if(result.acknowledged) {
+        io.emit("add_document_interface", name);
+      }
+    }
+
+  });
   
   socket.on("select_document", async (documentName, returnText) => {
     socket.join(documentName);

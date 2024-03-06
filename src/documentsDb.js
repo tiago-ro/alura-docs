@@ -26,4 +26,13 @@ function updateDocument(name, text){
 
 }
 
-export {findDocument, updateDocument, getDocuments};
+function addDocument(name) {
+    const result = documentsCollection.insertOne({
+        name,
+        text: "",
+    });
+    
+    return result
+}
+
+export {findDocument, updateDocument, getDocuments, addDocument};
