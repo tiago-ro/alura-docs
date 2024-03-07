@@ -11,9 +11,13 @@ function emitTextEditor(data){
     socket.emit("text_editor", data);
 }
 
+function emitDeleteDocument(name) {
+  socket.emit("delete-document", name);
+}
+
 socket.on("text_editor_client", (text)=>{
     updateTextEditor(text); 
 })
 
 
-export { emitTextEditor, selectDocument };
+export { emitTextEditor, selectDocument, emitDeleteDocument };

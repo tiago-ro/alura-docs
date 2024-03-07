@@ -35,4 +35,11 @@ function addDocument(name) {
     return result
 }
 
-export {findDocument, updateDocument, getDocuments, addDocument};
+function deleteDocument(name){
+  const result = documentsCollection.deleteOne({
+    name
+});
+  return result;
+}
+
+export {findDocument, updateDocument, getDocuments, addDocument, deleteDocument};

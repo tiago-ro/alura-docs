@@ -1,12 +1,13 @@
-import { emitTextEditor, selectDocument } from "./socket-front-document.js"
+import { emitTextEditor, selectDocument, emitDeleteDocument } from "./socket-front-document.js"
 
 const textEditor = document.getElementById("editor-texto");
+const buttonDelete = document.getElementById("delete-document");
 
 const params = new URLSearchParams(window.location.search);
 const documentName = params.get("name");
 
 const documentTitle = document.getElementById("document-title");
-documentTitle.textContent = documentName || "Documento sem título"; 
+documentTitle.textContent = documentName || "Untitled document"; 
 
 selectDocument(documentName)
 
@@ -16,6 +17,10 @@ textEditor.addEventListener("keyup", ()=>{
         documentName
     })
 });
+
+buttonDelete.addEventListener("click", ()=>{
+    emitDeleteDocument(documentName)
+})
 
 function updateTextEditor(text) {
     textEditor.value = text;

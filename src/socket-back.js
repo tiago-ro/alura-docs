@@ -1,5 +1,5 @@
 import io from "./server.js";
-import { findDocument, updateDocument, getDocuments, addDocument } from "./documentsDb.js";
+import { findDocument, updateDocument, getDocuments, addDocument, deleteDocument } from "./documentsDb.js";
 
 
 io.on("connection", (socket) => {
@@ -48,6 +48,12 @@ io.on("connection", (socket) => {
     };
     
   });
+
+  socket.on("delete-document",async (name)=>{
+    const result = await deleteDocument(name);
+
+    console.log(result);
+  })
   
 });
 
