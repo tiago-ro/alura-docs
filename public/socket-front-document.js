@@ -1,5 +1,5 @@
 const socket = io();
-import { updateTextEditor }from "./document.js";
+import { alertAndRedirect, updateTextEditor }from "./document.js";
 
 function selectDocument(documentName) {
     socket.emit("select_document", documentName, (text) => {
@@ -19,5 +19,8 @@ socket.on("text_editor_client", (text)=>{
     updateTextEditor(text); 
 })
 
+socket.on("delete_document_success", (name)=>{
+    alertAndRedirect(name);
+})
 
 export { emitTextEditor, selectDocument, emitDeleteDocument };

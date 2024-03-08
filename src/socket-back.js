@@ -52,8 +52,10 @@ io.on("connection", (socket) => {
   socket.on("delete-document",async (name)=>{
     const result = await deleteDocument(name);
 
-    console.log(result);
-  })
+    if (result.deletedCount) {
+      io.emit("delete_document_success", name);
+    }
+  });
   
 });
 

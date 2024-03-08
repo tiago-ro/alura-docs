@@ -16,10 +16,16 @@ function insertLinkDocument(documentName) {
   <a 
   href="documento.html?name=${documentName}" 
   class="list-group-item list-group-item-action"
+  id="document-${documentName}"
   >
   ${documentName}
   </a>
   `
 };
 
-export { insertLinkDocument };
+function deletelinkDocument(documentName) {
+  const documentId = document.getElementById(`document-${documentName}`);
+  documentList.removeChild(documentId);
+};
+
+export { insertLinkDocument, deletelinkDocument };

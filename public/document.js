@@ -26,4 +26,12 @@ function updateTextEditor(text) {
     textEditor.value = text;
 };
 
-export { updateTextEditor } ;
+function alertAndRedirect(name) {
+    if (name === documentName) {
+        alert(`The ${name} document has been deleted`);
+        window.location.href = "/";
+    }
+    
+}
+
+export { updateTextEditor, alertAndRedirect } ;
