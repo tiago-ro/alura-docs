@@ -4,7 +4,7 @@ const client = new MongoClient(
     
     process.env.DB_CONNECTION_STRING)
 
-let documentsCollection, usersCollection;
+let documentsCollection, usersCollection, saltUser;
 
 try {
     await client.connect();
@@ -17,5 +17,7 @@ try {
 } catch (erro) {
     console.log(erro);
 }
+
+
 
 export { documentsCollection, usersCollection };

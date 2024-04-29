@@ -23,12 +23,12 @@
 
     <form id="form-login">
       <div class="mb-3">
-        <label for="input-usuario" class="form-label">Usuário</label>
-        <input type="text" class="form-control" id="input-usuario" required>
+        <label for="input-user" class="form-label">User</label>
+        <input type="text" class="form-control" id="input-user" required>
       </div>
       <div class="mb-3">
-        <label for="input-senha" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="input-senha" required>
+        <label for="input-password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="input-password" required>
       </div>
       <button type="submit" class="btn btn-primary mb-3">Login</button>
       <p>Não possui usuário? <a href="/cadastro/index.html" class="link-primary">Faça o cadastro</a></p>
@@ -39,6 +39,7 @@
     crossorigin="anonymous"></script>
 
   <script src="/socket.io/socket.io.js"></script>
-</body>
+  <script type="module" src="login.js"></script>
+  </body>
 
 </html>
