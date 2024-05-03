@@ -13,8 +13,7 @@ function registerEventsLogin(socket, io){
 
         const tokenJwt = createJwt({user: typedUser});
 
-        console.log(tokenJwt)
-        socket.emit('isAuthenticated_success')
+        socket.emit('isAuthenticated_success', tokenJwt)
       } else {
         socket.emit('isAuthenticated_erro')
       }
