@@ -1,5 +1,11 @@
-const socket = io();
+import { getCookie } from "../utils/cookies.js";
 import { alertAndRedirect, updateTextEditor }from "./document.js";
+
+const socket = io("/users", {
+    auth: {
+        token: getCookie("tokenJwt")
+    }
+});
 
 function selectDocument(documentName) {
     socket.emit("select_document", documentName, (text) => {
