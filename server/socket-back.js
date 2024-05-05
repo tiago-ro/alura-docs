@@ -10,7 +10,7 @@ const nspUsers = io.of("/users");
 
 nspUsers.use(authorizeUser);
 
-nspUsers.on("connection", (socket) =>{
+nspUsers.on("connection", (socket) => {
   registerEventsInit(socket, nspUsers)
   registerEventsDocument(socket, nspUsers);
 })

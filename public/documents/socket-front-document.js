@@ -11,7 +11,12 @@ function selectDocument(documentName) {
     socket.emit("select_document", documentName, (text) => {
         updateTextEditor(text);
     })
-}
+};
+
+socket.on("connect_error", (error) => {
+    alert(error);
+    window.location.href = "/login/index.html"
+})
 
 function emitTextEditor(data){
     socket.emit("text_editor", data);
