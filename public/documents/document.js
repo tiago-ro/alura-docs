@@ -9,7 +9,10 @@ const documentName = params.get("name");
 const documentTitle = document.getElementById("document-title");
 documentTitle.textContent = documentName || "Untitled document"; 
 
-selectDocument(documentName)
+function processAuthorizationSuccess(payloadToken) {
+  selectDocument({documentName, userName: payloadToken.user.user})
+};
+
 
 textEditor.addEventListener("keyup", ()=>{
     emitTextEditor({
@@ -34,4 +37,4 @@ function alertAndRedirect(name) {
     
 }
 
-export { updateTextEditor, alertAndRedirect } ;
+export { updateTextEditor, alertAndRedirect, processAuthorizationSuccess } ;

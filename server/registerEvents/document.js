@@ -2,9 +2,9 @@ import { findDocument, updateDocument, deleteDocument } from "../db/documentsDb.
 
 function registerEventsDocument(socket, io) {
     
-    socket.on("select_document", async (documentName, returnText) => {
+    socket.on("select_document", async ({documentName, userName}, returnText) => {
         socket.join(documentName);
-        
+        console.log(userName)
         const document = await findDocument(documentName);
     
         if(document) {

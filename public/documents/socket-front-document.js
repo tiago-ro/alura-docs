@@ -1,5 +1,5 @@
 import { getCookie } from "../utils/cookies.js";
-import { alertAndRedirect, updateTextEditor }from "./document.js";
+import { alertAndRedirect, updateTextEditor, processAuthorizationSuccess }from "./document.js";
 
 const socket = io("/users", {
     auth: {
@@ -7,8 +7,10 @@ const socket = io("/users", {
     }
 });
 
-function selectDocument(documentName) {
-    socket.emit("select_document", documentName, (text) => {
+socket.on("authorization_success", processAuthorizationSuccess);  
+
+function selectDocument(dataInput) {
+    socket.emit("select_document", dataInput, (text) => {
         updateTextEditor(text);
     })
 };
