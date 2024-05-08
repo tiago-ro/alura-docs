@@ -1,13 +1,21 @@
 import { findDocument, updateDocument, deleteDocument } from "../db/documentsDb.js";
+import { addConnections, getUsersDocument } from "../utils/connectionsDocuments.js";
 
 function registerEventsDocument(socket, io) {
     
     socket.on("select_document", async ({documentName, userName}, returnText) => {
-        socket.join(documentName);
-        console.log(userName)
-        const document = await findDocument(documentName);
-    
-        if(document) {
+      
+      const document = await findDocument(documentName);
+      
+      if(document) {
+          socket.join(documentName);
+
+          addConnections({documentName, userName});
+
+          const usersInDocument = getUsersDocument(userName);
+
+          console.log(usersInDocument)
+
           returnText(document.text);
         }
       });
