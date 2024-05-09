@@ -5,9 +5,9 @@ function addConnections(connections) {
   connectionsDocuments.push(connections);
 }
 
-function getUsersDocument(userName) {
+function getUsersDocument(documentName) {
   return connectionsDocuments
-    .filter((connections) => connections.userName === userName)
+    .filter((connections) => connections.documentName === documentName)
     .map((connection) => connection.userName);
 }
 

@@ -2,6 +2,7 @@ import { emitTextEditor, selectDocument, emitDeleteDocument } from "./socket-fro
 
 const textEditor = document.getElementById("editor-texto");
 const buttonDelete = document.getElementById("delete-document");
+const connectedUsers = document.getElementById("connected-users");
 
 const params = new URLSearchParams(window.location.search);
 const documentName = params.get("name");
@@ -13,6 +14,15 @@ function processAuthorizationSuccess(payloadToken) {
   selectDocument({documentName, userName: payloadToken.user.user})
 };
 
+function updateUserInterface(usersInDocument) {
+    connectedUsers.innerHTML = "";
+
+    usersInDocument.forEach((user) => {
+        connectedUsers.innerHTML += `
+        <li class="list-group-item">${user}</li>
+        `;
+    });
+}
 
 textEditor.addEventListener("keyup", ()=>{
     emitTextEditor({
@@ -37,4 +47,4 @@ function alertAndRedirect(name) {
     
 }
 
-export { updateTextEditor, alertAndRedirect, processAuthorizationSuccess } ;
+export { updateTextEditor, alertAndRedirect, processAuthorizationSuccess, updateUserInterface } ;

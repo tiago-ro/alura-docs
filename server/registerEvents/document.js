@@ -12,9 +12,9 @@ function registerEventsDocument(socket, io) {
 
           addConnections({documentName, userName});
 
-          const usersInDocument = getUsersDocument(userName);
+          const usersInDocument = getUsersDocument(documentName);
 
-          console.log(usersInDocument)
+          io.to(documentName).emit("users_in_document", usersInDocument);
 
           returnText(document.text);
         }
