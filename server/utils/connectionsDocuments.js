@@ -1,6 +1,12 @@
 
 const connectionsDocuments = [];
 
+function findConnection(documentName, userName) {
+  return connectionsDocuments.find((connection) => {
+    return connection.documentName === documentName && connection.userName === userName
+  })
+}
+
 function addConnections(connections) {
   connectionsDocuments.push(connections);
 }
@@ -11,4 +17,14 @@ function getUsersDocument(documentName) {
     .map((connection) => connection.userName);
 }
 
-export { addConnections, getUsersDocument }
+function removeConnection(documentName, userName) {
+  const index = connectionsDocuments.findIndex((connection) => {
+    return connection.documentName === documentName && connection.userName === userName
+  });
+
+  if(index !== -1) {
+    connectionsDocuments.splice(index, 1);
+  };
+};
+
+export { findConnection, addConnections, getUsersDocument, removeConnection }

@@ -9,6 +9,11 @@ const socket = io("/users", {
 
 socket.on("authorization_success", processAuthorizationSuccess);  
 
+socket.on("connetion_already_exists", () => {
+    alert("user already logged in to another page");
+    window.location.href = "/"
+})
+
 function selectDocument(dataInput) {
     socket.emit("select_document", dataInput, (text) => {
         updateTextEditor(text);
